@@ -13,17 +13,17 @@ namespace BaseCore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class AccountController : ControllerBase
     {
         private IConfiguration _config;
 
-        public UserController(IConfiguration config)
+        public AccountController(IConfiguration config)
         {
             _config = config;
         }
         [HttpGet]
         [Route("add")]
-        public JsonResultModel CreateUser(string s)
+        public JsonResultModel Token(string s)
         {
             var jwt = new JWTServices(_config);
             var token = jwt.GenerateSecurityToken(DateTime.Now.ToString());
