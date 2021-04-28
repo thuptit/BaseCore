@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace BaseCore.BusinessLogic.BusinessLogics
 {
-    public class BusinessLogic<T> : IBusinessLogic<T> where T : class
+    public class BaseBusinessLogic<T> : IBaseBusinessLogic<T> where T : class
     {
         protected readonly ApplicationDbContext DbContext;
 
-        public BusinessLogic(ApplicationDbContext dbContext)
+        public BaseBusinessLogic(ApplicationDbContext dbContext)
         {
             DbContext = dbContext;
         }

@@ -15,6 +15,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using BaseCore.Data.Models;
 using Microsoft.AspNetCore.Authentication;
+using BaseCore.BusinessLogic.Interfaces;
+using BaseCore.BusinessLogic.BusinessLogics;
+
 
 namespace BaseCore
 {
@@ -55,6 +58,11 @@ namespace BaseCore
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
+            services.AddCors();
+            //jwt token
+            services.AddTokenAuthentication(Configuration);
+            //dependency injection 
+            services.AddTransient(typeof(IBaseBusinessLogic<>), typeof(BaseBusinessLogic<>));
         }
     
 
@@ -72,7 +80,12 @@ namespace BaseCore
             app.UseAuthentication();
             app.UseIdentityServer();
             app.UseAuthorization();
-
+            app.UseCors(
+             options => options.WithOrigins("http://localhost:4200")
+                         .AllowAnyOrigin()
+                         .AllowAnyHeader()
+                         .AllowAnyMethod()
+           );
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BaseCore.BusinessLogic.Interfaces
 {
-    public interface IBusinessLogic<T> where T : class
+    public interface IBaseBusinessLogic<T> where T : class
     {
         #region normal function
 

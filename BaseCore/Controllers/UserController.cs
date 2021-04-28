@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using BaseCore.BusinessLogic;
+using Microsoft.Extensions.Configuration;
 
 namespace BaseCore.Controllers
 {
@@ -14,11 +15,19 @@ namespace BaseCore.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private IConfiguration _config;
+
+        public UserController(IConfiguration config)
+        {
+            _config = config;
+        }
         [HttpGet]
         [Route("add")]
         public JsonResultModel CreateUser(string s)
         {
-            return new JsonResultModel(1, "thành công", null);
+            var jwt = new JWTServices(_config);
+            var token = jwt.GenerateSecurityToken(DateTime.Now.ToString());
+            return new JsonResultModel(1, "thành công", token);
         }
     }
 }
