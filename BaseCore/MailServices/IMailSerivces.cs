@@ -9,5 +9,6 @@ namespace BaseCore.MailServices
     public interface IMailSerivces
     {
         Task SendMailAsync(EmailModel emailModel);
+        Task SenMailTemplateHTML(EmailModel emailModel);
     }
 }

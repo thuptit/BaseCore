@@ -36,7 +36,7 @@ namespace BaseCore.Controllers
         [Route("sendmail")]
         public async Task<JsonResultModel> SendMail([FromForm]EmailModel emailModel)
         {
-            await mailServices.SendMailAsync(emailModel);
+            await mailServices.SenMailTemplateHTML(emailModel);
             return new JsonResultModel(200, "send to success", null);
         }
     }
