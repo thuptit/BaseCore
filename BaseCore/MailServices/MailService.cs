@@ -54,7 +54,7 @@ namespace BaseCore.MailServices
             await stmp.SendAsync(mail);
             stmp.Disconnect(true);
         }
-
+        //send mail with template HTML
         public async Task SenMailTemplateHTML(EmailModel emailModel)
         {
             var mail = new MimeMessage();
