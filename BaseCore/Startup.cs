@@ -17,7 +17,8 @@ using BaseCore.Data.Models;
 using Microsoft.AspNetCore.Authentication;
 using BaseCore.BusinessLogic.Interfaces;
 using BaseCore.BusinessLogic.BusinessLogics;
-
+using BaseCore.Common.Models.Emails;
+using BaseCore.MailServices;
 
 namespace BaseCore
 {
@@ -63,6 +64,9 @@ namespace BaseCore
             services.AddTokenAuthentication(Configuration);
             //dependency injection 
             services.AddTransient(typeof(IBaseBusinessLogic<>), typeof(BaseBusinessLogic<>));
+            //mail
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+            services.AddTransient<IMailSerivces, MailService>();
         }
     
 
